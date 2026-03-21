@@ -283,7 +283,11 @@ def generar_html(estados):
     for v in VISAS_DATA:
         estado = estados.get(v["key"], "")
         cls = "nav-open" if "ABIERTA" in estado else ("nav-closed" if "CERRADA" in estado else "nav-warn")
-        nav_html += f'<button class="nav-btn {cls}" onclick="document.getElementById(\'card-{v[\'id\']}\').scrollIntoView({{behavior:\'smooth\'}})">{v["flag"]} {v["pais"]}</button>\n'
+        vid = v["id"]
+        vflag = v["flag"]
+        vpais = v["pais"]
+        btn_onclick = "document.getElementById('card-" + vid + "').scrollIntoView({behavior:'smooth'})"
+        nav_html += '<button class="nav-btn ' + cls + '" onclick="' + btn_onclick + '">' + vflag + ' ' + vpais + '</button>\n'
 
     html = f"""<!DOCTYPE html>
 <html lang="es">
